@@ -123,7 +123,7 @@ def readArduino(ser, N=1000, t0=0, Ndata=1, seperator=';'):
         for i in range(N):
             try: # mocht de data niet (goed) aankomen ga dan verder met het volgende datapunt
                 ardata = ser.readline().decode().strip('\r\n')
-                ardata = ardata.split(';')
+                ardata = ardata.split(seperator)
                 ardata = [float(i) for i in ardata]
                 data[:, i] = (time.time() - t0, *ardata)
             except:
