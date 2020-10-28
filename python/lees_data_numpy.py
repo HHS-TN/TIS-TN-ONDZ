@@ -8,7 +8,6 @@ def readArray(filename):
     arugmenten:
         filename: filenaam waar de data staat
     '''
-
     data = np.loadtxt(filename, unpack=False, delimiter=',')
     return data
 
@@ -17,13 +16,9 @@ if __name__ == '__main__':
     # module wordt uitgevoerd
     
     import matplotlib.pyplot as plt
-    
-    # data opgeslagen met meerdere sensors tegelijk uitgelezen.
-    data = readArray('meting_test1_1581080207.txt')
+    # data van 1 kanaal weergeven
+    fn = 'meting_test1_1603898691.txt'
+    data = readArray(fn)
     time = data[:,0]
-    gem = data[:,1:].mean(axis=1)
-    std = data[:,1:].std(axis=1)
-    print(std)
-    dt = time[1:]-time[:-1]
-    plt.errorbar(time,gem, yerr=100*std)
+    plt.plot(time,data[:,1])
     plt.show()
